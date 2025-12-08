@@ -1,0 +1,657 @@
+/* ======================================================
+   GLOBAL STYLES & ENVIRONMENT BACKGROUND
+====================================================== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+
+    background-image: url("ghg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: #ffffff;
+    text-shadow: 1px 1px 2px black;
+}
+
+/* ================================================
+   LOGO SECTION – ForesToFuture
+================================================ */
+.site-logo {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: -20px; /* pulls hero closer */
+    color: #ffffff;
+    text-shadow: 1px 1px 3px #000;
+}
+
+.site-logo img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+}
+
+.logo-title {
+    font-size: 42px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #dff8df;
+    letter-spacing: 2px;
+}
+
+.logo-tagline {
+    font-size: 18px;
+    color: #c8f1c8;
+    margin-top: -5px;
+}
+
+/* ================================================
+   TOP-LEFT LOGO
+================================================ */
+.logo-container {
+    position: fixed;
+    top: 15px;
+    left: 25px;
+    display: flex;
+    align-items: center;
+    z-index: 1500;
+}
+
+.logo-container img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: rgba(255,255,255,0.3);
+    padding: 5px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.logo-container .logo-text {
+    font-size: 22px;
+    margin-left: 10px;
+    color: #dff8df;
+    font-weight: bold;
+    text-shadow: 1px 2px 3px #000;
+    letter-spacing: 1px;
+}
+
+
+
+/* ======================================================
+   TOP RIGHT NAVIGATION BAR
+====================================================== */
+.top-right-nav {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    z-index: 1000;
+}
+
+.top-right-nav a {
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #dff8df;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background-color: rgba(0,0,0,0.35);
+    transition: 0.3s;
+}
+
+.top-right-nav a:hover {
+    background-color: #3c7d3c;
+    color: white;
+}
+
+/* HERO BUTTON */
+.hero-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #3c7d3c;
+    color: white;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.hero-btn:hover {
+    background: #4caf50;
+    transform: scale(1.05);
+}
+
+/* FEATURE CARDS */
+.feature-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.feature-box {
+    flex: 1;
+    min-width: 260px;
+    padding: 25px;
+
+    /* Slight dark-green frosted glass */
+    background: rgba(20, 60, 20, 0.28);   /* transparent dark green */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 40px;
+    color: #2f5d34;
+    margin-bottom: 10px;
+}
+
+/* CTA BUTTON */
+.cta-box {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.cta-btn {
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #4caf50, #3c7d3c);
+    color: white;
+    font-size: 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    background: linear-gradient(135deg, #66bb6a, #4caf50);
+    transform: scale(1.07);
+}
+
+
+/* ======================================================
+   HERO SECTION
+====================================================== */
+.hero {
+    position: relative;
+    height: 65vh;
+    background: url("{{ url_for('static', filename='forest.jpg') }}") no-repeat center/cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 60, 0, 0.45);
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    max-width: 700px;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.hero-text p {
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+/* ======================================================
+   FROSTED CONTENT SECTION
+====================================================== */
+.content {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+
+    /* Slight dark-green frosted background */
+    background: rgba(20, 60, 20, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    line-height: 1.7;
+}
+
+
+.content h2 {
+    color: #2f5d34;
+    border-left: 5px solid #3c7d3c;
+    padding-left: 10px;
+    margin-top: 40px;
+}
+
+.content p {
+    line-height: 1.7;
+    font-size: 18px;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+/* ======================================================
+   CONTACT SECTION LAYOUT
+====================================================== */
+.contact-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+/* ======================================================
+   LEFT COLUMN – CONTACT INFO
+====================================================== */
+.contact-info-list {
+    flex: 1;
+}
+
+.info-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.info-box i {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #00c4ff;
+}
+
+.info-box h3 {
+    margin: 0 0 5px 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.info-box p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ======================================================
+   ICON COLORS (Nature Theme)
+====================================================== */
+.fa-phone {
+    color: #66ff66;   /* vibrant nature green */
+}
+
+.fa-envelope {
+    color: #4fc3f7;   /* sky blue */
+}
+
+.fa-map-marker {
+    color: #ff7043;   /* earthy orange/red */
+}
+
+/* ======================================================
+   RIGHT COLUMN – SEND MESSAGE FORM (Nature Theme)
+====================================================== */
+.card-form {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.30);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    color: #1a1a1a;
+}
+
+.card-form h2 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: #2f5d34;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* SOCIAL MEDIA CONTACT UNDER FORM */
+.social-contact {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0,0,0,0.15);
+}
+
+.social-contact h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #2f5d34;
+    font-weight: bold;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.social-item i {
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+/* Icon Colors */
+.social-item .fa-facebook { color: #1877f2; }
+.social-item .fa-instagram { color: #e4405f; }
+.social-item .fa-twitter { color: #1da1f2; }
+
+/* Link styling */
+.social-item a {
+    font-size: 16px;
+    color: #000;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-item a:hover {
+    color: #2f5d34; /* forest green hover */
+    text-decoration: underline;
+}
+
+/* SOCIAL MEDIA BOX INSIDE FORM */
+.social-box {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+
+    width: 220px;
+    background: rgba(20, 60, 20, 0.35);
+    backdrop-filter: blur(6px);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.25);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.social-box h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #dff8df;
+    font-weight: bold;
+}
+
+/* Social links */
+.social-link {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #e0f7e0;
+    transition: 0.3s;
+}
+
+.social-link i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+/* Icon colors */
+.social-link .fa-facebook { color: #1877f2; }
+.social-link .fa-instagram { color: #e4405f; }
+.social-link .fa-twitter { color: #1da1f2; }
+
+.social-link:hover {
+    color: #a8e6a8;
+    text-decoration: underline;
+}
+
+.card-form {
+    position: relative; 
+    padding-bottom: 150px; /* ADD THIS */
+}
+
+
+
+
+/* ======================================================
+   FORM INPUTS – ECO FLOATING LABEL-Articles page
+====================================================== */
+.card-form .inputBox {
+    position: relative;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.card-form .inputBox input,
+.card-form .inputBox textarea {
+    width: 100%;
+    padding: 12px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #2f5d34;
+    outline: none;
+    font-size: 16px;
+    color: #000;
+}
+
+.card-form .inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 10px 0;
+    pointer-events: none;
+    transition: 0.3s;
+    color: #3a6d40;
+}
+
+.card-form .inputBox input:focus ~ span,
+.card-form .inputBox input:valid ~ span,
+.card-form .inputBox textarea:focus ~ span,
+.card-form .inputBox textarea:valid ~ span {
+    color: #4caf50;
+    transform: translateY(-20px);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* ======================================================
+   SUBMIT BUTTON – GREEN GRADIENT
+====================================================== */
+.card-form input[type="submit"] {
+    width: 150px;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #3c7d3c, #2f5d34);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card-form input[type="submit"]:hover {
+    background: linear-gradient(135deg, #4caf50, #3c7d3c);
+    transform: scale(1.03);
+}
+
+
+
+.articles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.article-card {
+    background: rgba(20, 60, 20, 0.25);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s;
+}
+
+.article-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.article-card h3 {
+    margin: 15px 15px 5px;
+    color: #2f5d34;
+}
+
+.article-card p {
+    margin: 0 15px 10px;
+    color: #ffffff;
+    line-height: 1.5;
+}
+
+.article-card .read-more {
+    margin: 10px 15px 15px;
+    padding: 8px 12px;
+    background: #3c7d3c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.article-card .read-more:hover {
+    background: #4caf50;
+    transform: scale(1.05);
+}
+
+/*clickable image*/
+.articles-container { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .article-card {
+            background: rgba(20, 60, 20, 0.25);
+            backdrop-filter: blur(6px);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .article-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .article-card h3 {
+            margin: 15px 15px 5px;
+            color: #2f5d34;
+        }
+
+        .article-card p {
+            margin: 0 15px 10px;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+
+        .article-card .read-more {
+            margin: 10px 15px 15px;
+            padding: 8px 12px;
+            background: #3c7d3c;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .article-card .read-more:hover {
+            background: #4caf50;
+            transform: scale(1.05);
+        }
+
+        .article-details {
+            display: none;
+            margin: 0 15px 15px;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+
+        .content h1 {
+            color: #2f5d34;
+            margin-bottom: 20px;
+        }
+
+        /* Modal for Full-Size Images */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }

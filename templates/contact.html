@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - ForesToFuture</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Fade Animation CSS -->
+    <style>
+        body {
+            opacity: 1;
+            transition: opacity 0.6s ease;
+        }
+        body.fade-out {
+            opacity: 0;
+        }
+    </style>
+
+    <!-- Fade Animation Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = document.querySelectorAll("nav a");
+
+            links.forEach(link => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const url = e.target.href;
+                    document.body.classList.add("fade-out");
+                    setTimeout(() => {
+                        window.location.href = url;
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+<!-- Logo Section -->
+<div class="logo-container">
+    <img src="{{ url_for('static', filename='logo-10.webp') }}" alt="ForesToFuture Logo">
+    <span class="logo-text">ForesToFuture</span>
+</div>
+
+<!-- Navigation -->
+<nav class="top-right-nav">
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('contact') }}">Contact</a>
+    <a href="{{ url_for('gallery') }}">Gallery</a>
+    <a href="{{ url_for('articles') }}">Articles</a>
+    <a href="{{ url_for('admin_login') }}">Admin</a>
+</nav>
+
+<div class="content">
+
+    <h1>Contact Us</h1>
+    <p>{{ text }}</p>
+
+    <div class="contact-wrapper">
+
+        <!-- LEFT SIDE — CONTACT INFO -->
+        <div class="contact-info-list">
+            <div class="info-box">
+                <div class="icon"><i class="fa fa-map-marker"></i></div>
+                <h3>Address</h3>
+                <p>
+                    Cahigam, Rosario, Batangas<br>
+                    Baybayin, Rosario, Batangas<br>
+                    Balibago, Rosario, Batangas<br>
+                    Bagong Pook, Rosario, Batangas
+                </p>
+            </div>
+
+            <div class="info-box">
+                <div class="icon"><i class="fa fa-phone"></i></div>
+                <h3>Phone</h3>
+                <p>
+                    099473779<br>
+                    0987435214<br>
+                    09875453<br>
+                    09875435
+                </p>
+            </div>
+
+            <div class="info-box">
+                <div class="icon"><i class="fa fa-envelope"></i></div>
+                <h3>Email</h3>
+                <p>
+                    jhonolydecd@gmail.com<br>
+                    mattboac@gmail.com<br>
+                    jlorenz@gmail.com<br>
+                    janmatthew2@gmail.com
+                </p>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE — SEND MESSAGE FORM -->
+        <div class="contactForm card-form">
+            <form method="POST" action="{{ url_for('contact') }}">
+                <h2>Send Message</h2>
+
+                <div class="inputBox">
+                    <input type="text" name="name" required>
+                    <span>Full Name</span>
+                </div>
+
+                <div class="inputBox">
+                    <input type="email" name="email" required>
+                    <span>Email</span>
+                </div>
+
+                <div class="inputBox">
+                    <textarea name="message" required></textarea>
+                    <span>Type your message...</span>
+                </div>
+
+                <div class="inputBox">
+                    <input type="submit" value="Send">
+                </div>
+            </form>
+
+            <!-- Social Box INSIDE the real form -->
+            <div class="social-box">
+                <h3>Connect With Us</h3>
+                <a href="https://www.facebook.com/share/1BUUx131Yw/" target="_blank" class="social-link">
+                    <i class="fa-brands fa-facebook"></i> Jhon Olyde De Silva 
+                </a>
+                <a href="https://www.instagram.com/not_makiiii?" target="_blank" class="social-link">
+                    <i class="fa-brands fa-instagram"></i> @not_makiii
+                </a>
+                <a href="https://twitter.com/ForesToFuture" target="_blank" class="social-link">
+                    <i class="fa-brands fa-twitter"></i> @olyde
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

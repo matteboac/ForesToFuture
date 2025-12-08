@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - ForesToFuture</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+        <style>
+        body {
+            opacity: 1;
+            transition: opacity 0.6s ease;
+        }
+        body.fade-out {
+            opacity: 0;
+        }
+        </style>
+
+    <!-- Fade Animation Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = document.querySelectorAll("nav a");
+            links.forEach(link => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const url = e.target.href;
+                    document.body.classList.add("fade-out");
+                    setTimeout(() => {
+                        window.location.href = url;
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    
+</head>
+<body>
+
+<div class="logo-container">
+    <img src="{{ url_for('static', filename='logo-10.webp') }}" alt="ForesToFuture Logo">
+    <span class="logo-text">ForesToFuture</span>
+</div>
+
+<div class="contactForm card-form">
+    <form method="POST" action="{{ url_for('admin_login') }}">
+        {{ form.hidden_tag() }}  <!-- CSRF token -->
+
+        <h2>Log in</h2>
+
+        <div class="inputBox">
+            {{ form.username.label }}
+            {{ form.username }}
+
+        </div>
+
+        <div class="inputBox">
+            {{ form.password.label }}
+            {{ form.password }}
+
+        </div>
+
+        <div class="inputBox">
+            {{ form.submit(class="submit-btn") }}
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+
+    </form>
+
+    <p>Don't have an account? <a href="{{ url_for('admin_signup') }}">Sign Up</a></p>
+</div>
+
+</body>
+</html>
