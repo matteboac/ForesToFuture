@@ -74,5 +74,43 @@
             </p>
         </div>
     </div>
+
+    <!-- Deforestation Data Section -->
+    <div style="background: rgba(255, 249, 230, 0.15); border-radius: 15px; padding: 30px; margin: 40px 0; border-left: 5px solid #f39c12;">
+        <h2 style="color: #f39c12; margin-top: 0;">🌳 Global Deforestation & Biodiversity Loss Data</h2>
+        <p style="font-size: 18px; line-height: 1.8;">
+            Explore comprehensive data tracking deforestation rates across the world's most affected regions. 
+            Our database includes yearly statistics from 2016 to 2025 for 10 countries with the highest forest 
+            loss rates globally.
+        </p>
+
+        <div style="background: rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; margin: 20px 0;">
+            <h3 style="color: #c0392b; text-align: center; margin-top: 0;">Critical Statistics</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 10px; margin: 8px 0; background: rgba(20, 60, 20, 0.25); border-left: 4px solid #c0392b; border-radius: 5px;">
+                    <strong style="color: #4caf50;">Brazil:</strong> Lost ~2.94 million hectares (2015-2025) - the largest globally
+                </li>
+                <li style="padding: 10px; margin: 8px 0; background: rgba(20, 60, 20, 0.25); border-left: 4px solid #c0392b; border-radius: 5px;">
+                    <strong style="color: #4caf50;">Cambodia:</strong> Highest annual rate at ~3.3% per year
+                </li>
+                <li style="padding: 10px; margin: 8px 0; background: rgba(20, 60, 20, 0.25); border-left: 4px solid #c0392b; border-radius: 5px;">
+                    <strong style="color: #4caf50;">10 Countries Combined:</strong> Over 5.9 million hectares lost
+                </li>
+                <li style="padding: 10px; margin: 8px 0; background: rgba(20, 60, 20, 0.25); border-left: 4px solid #c0392b; border-radius: 5px;">
+                    <strong style="color: #4caf50;">Impact:</strong> Countless species threatened, climate change accelerated
+                </li>
+            </ul>
+        </div>
+
+        <div class="cta-box" style="margin-top: 30px;">
+            <a href="{{ url_for('deforestation') }}" class="cta-btn" style="font-size: 20px; padding: 15px 35px;">
+                🌲 View Interactive Deforestation Data →
+            </a>
+        </div>
+
+        <p style="text-align: center; margin-top: 20px; font-size: 16px; color: rgba(255,255,255,0.8);">
+            Access interactive graphs, detailed statistics, and country-by-country analysis
+        </p>
+    </div>
 </div>
 {% endblock %}
