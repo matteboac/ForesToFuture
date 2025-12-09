@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Deforestation Data Management - ForesToFuture{% endblock %}
+
+{% block navigation %}
+<nav class="top-right-nav">
+    <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('admin_edit_about') }}">Edit About</a>
+    <a href="{{ url_for('admin_deforestation') }}">Deforestation Data</a>
+    <a href="{{ url_for('home') }}">View Site</a>
+    <a href="{{ url_for('admin_logout') }}">Logout</a>
+</nav>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+        <h1>Deforestation Data Management</h1>
+        <p>View and manage global deforestation statistics</p>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="content">
+    <h2>Global Deforestation Overview</h2>
+    
+    <div class="feature-wrapper">
+        <div class="feature-box">
+            <i class="fa fa-globe feature-icon"></i>
+            <h3>Countries Tracked</h3>
+            <p style="font-size: 2em; font-weight: bold; color: #4caf50;">{{ countries|length }}</p>
+            <p>Countries with deforestation data</p>
+        </div>
+
+        <div class="feature-box">
+            <i class="fa fa-chart-line feature-icon"></i>
+            <h3>Data Coverage</h3>
+            <p style="font-size: 2em; font-weight: bold; color: #4caf50;">2016-2025</p>
+            <p>10 years of tracking</p>
+        </div>
+
+        <div class="feature-box">
+            <i class="fa fa-tree feature-icon"></i>
+            <h3>Total Forest Loss</h3>
+            <p style="font-size: 2em; font-weight: bold; color: #c0392b;">5.9M+</p>
+            <p>Hectares lost (2015-2025)</p>
+        </div>
+    </div>
+
+    <h2>Country Statistics</h2>
+    
+    {% if countries %}
+    <div class="admin-table-wrapper">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Total Forest Loss (ha)</th>
+                    <th>Avg Annual Rate (%)</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for country in countries %}
+                <tr>
+                    <td><strong>{{ country.country }}</strong></td>
+                    <td>{{ "{:,}".format(country.total_forest_loss_2015_2025) }}</td>
+                    <td>{{ "%.2f"|format(country.avg_annual_loss_rate) }}%</td>
+                    <td>{{ country.description[:80] }}{% if country.description|length > 80 %}...{% endif %}</td>
+                    <td>
+                        <a href="{{ url_for('deforestation') }}#{{ country.country }}" 
+                           class="hero-btn" 
+                           style="padding: 6px 12px; font-size: 0.9em;">
+                            View Data
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>No deforestation data available. Please run the seed script to populate the database.</p>
+    <div style="background: rgba(255, 249, 230, 0.15); padding: 20px; border-radius: 10px; margin-top: 20px;">
+        <h3 style="color: #f39c12;">📌 How to Add Data</h3>
+        <p>Run the following command in your terminal:</p>
+        <code style="background: rgba(0,0,0,0.3); padding: 10px; display: block; border-radius: 5px; margin: 10px 0;">
+            python seed.py
+        </code>
+        <p>This will populate the database with deforestation data for 10 countries.</p>
+    </div>
+    {% endif %}
+
+    <div style="margin-top: 40px; text-align: center;">
+        <a href="{{ url_for('deforestation') }}" class="cta-btn">
+            🌲 View Public Deforestation Page
+        </a>
+    </div>
+</div>
+
+<style>
+.admin-table-wrapper {
+    overflow-x: auto;
+    margin: 20px 0;
+    background: rgba(20, 60, 20, 0.25);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.admin-table th {
+    background: rgba(60, 125, 60, 0.5);
+    font-weight: bold;
+}
+
+.admin-table tr:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    color: #4caf50;
+}
+</style>
+{% endblock %}

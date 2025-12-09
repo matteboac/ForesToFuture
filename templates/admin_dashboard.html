@@ -6,6 +6,7 @@
 <nav class="top-right-nav">
     <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
     <a href="{{ url_for('admin_edit_about') }}">Edit About</a>
+    <a href="{{ url_for('admin_deforestation') }}">Deforestation Data</a>
     <a href="{{ url_for('home') }}">View Site</a>
     <a href="{{ url_for('admin_logout') }}">Logout</a>
 </nav>
@@ -42,9 +43,11 @@
         </div>
 
         <div class="feature-box">
-            <i class="fa fa-info-circle feature-icon"></i>
-            <h3>About Content Status</h3>
-            <p>Last updated: {% if about_content and about_content.updated_at %}{{ about_content.updated_at.strftime('%B %d, %Y') }}{% else %}Never{% endif %}</p>
+            <i class="fa fa-chart-bar feature-icon"></i>
+            <h3>Deforestation Data</h3>
+            <p>Manage global deforestation statistics and country data.</p>
+            <p><strong>{{ deforestation_countries }}</strong> countries tracked</p>
+            <a href="{{ url_for('admin_deforestation') }}" class="hero-btn" style="margin-top: 10px;">Manage Data</a>
         </div>
     </div>
 
@@ -83,6 +86,29 @@
     {% else %}
     <p>No contact messages yet.</p>
     {% endif %}
+
+    <h2>Quick Stats</h2>
+    <div class="feature-wrapper">
+        <div class="feature-box">
+            <i class="fa fa-info-circle feature-icon"></i>
+            <h3>About Content</h3>
+            <p>Last updated: {% if about_content and about_content.updated_at %}{{ about_content.updated_at.strftime('%B %d, %Y') }}{% else %}Never{% endif %}</p>
+        </div>
+
+        <div class="feature-box">
+            <i class="fa fa-database feature-icon"></i>
+            <h3>Database Records</h3>
+            <p><strong>{{ deforestation_records }}</strong> deforestation data points</p>
+            <p><strong>{{ contacts|length }}</strong> contact messages</p>
+        </div>
+
+        <div class="feature-box">
+            <i class="fa fa-globe feature-icon"></i>
+            <h3>Public Pages</h3>
+            <p>All content visible to visitors</p>
+            <a href="{{ url_for('home') }}" class="hero-btn" style="margin-top: 10px;">View Site</a>
+        </div>
+    </div>
 </div>
 
 <style>
