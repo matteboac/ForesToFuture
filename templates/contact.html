@@ -1,67 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - ForesToFuture</title>
+{% extends "base.html" %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+{% block title %}Contact - ForesToFuture{% endblock %}
 
-    <!-- Fade Animation CSS -->
-    <style>
-        body {
-            opacity: 1;
-            transition: opacity 0.6s ease;
-        }
-        body.fade-out {
-            opacity: 0;
-        }
-    </style>
-
-    <!-- Fade Animation Script -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const links = document.querySelectorAll("nav a");
-
-            links.forEach(link => {
-                link.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    const url = e.target.href;
-                    document.body.classList.add("fade-out");
-                    setTimeout(() => {
-                        window.location.href = url;
-                    }, 500);
-                });
-            });
-        });
-    </script>
-</head>
-
-<body>
-
-<!-- Logo Section -->
-<div class="logo-container">
-    <img src="{{ url_for('static', filename='logo-10.webp') }}" alt="ForesToFuture Logo">
-    <span class="logo-text">ForesToFuture</span>
-</div>
-
-<!-- Navigation -->
-<nav class="top-right-nav">
-    <a href="{{ url_for('home') }}">Home</a>
-    <a href="{{ url_for('about') }}">About</a>
-    <a href="{{ url_for('contact') }}">Contact</a>
-    <a href="{{ url_for('gallery') }}">Gallery</a>
-    <a href="{{ url_for('articles') }}">Articles</a>
-    <a href="{{ url_for('admin_login') }}">Admin</a>
-</nav>
-
+{% block content %}
 <div class="content">
-
     <h1>Contact Us</h1>
     <p>{{ text }}</p>
 
     <div class="contact-wrapper">
-
         <!-- LEFT SIDE — CONTACT INFO -->
         <div class="contact-info-list">
             <div class="info-box">
@@ -137,9 +83,6 @@
                 </a>
             </div>
         </div>
-
     </div>
-
 </div>
-</body>
-</html>
+{% endblock %}

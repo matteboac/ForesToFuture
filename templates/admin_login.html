@@ -1,83 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - ForesToFuture</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% extends "base.html" %}
 
-        <style>
-        body {
-            opacity: 1;
-            transition: opacity 0.6s ease;
-        }
-        body.fade-out {
-            opacity: 0;
-        }
-        </style>
+{% block title %}Admin Login - ForesToFuture{% endblock %}
 
-    <!-- Fade Animation Script -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const links = document.querySelectorAll("nav a");
-            links.forEach(link => {
-                link.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    const url = e.target.href;
-                    document.body.classList.add("fade-out");
-                    setTimeout(() => {
-                        window.location.href = url;
-                    }, 500);
-                });
-            });
-        });
-    </script>
-</head>
-<body>
-    
-</head>
-<body>
+{% block navigation %}
+<!-- No navigation for login page -->
+{% endblock %}
 
-<div class="logo-container">
-    <img src="{{ url_for('static', filename='logo-10.webp') }}" alt="ForesToFuture Logo">
-    <span class="logo-text">ForesToFuture</span>
-</div>
-
-<div class="contactForm card-form">
+{% block content %}
+<div class="contactForm card-form" style="max-width: 450px; margin: 100px auto;">
     <form method="POST" action="{{ url_for('admin_login') }}">
-        {{ form.hidden_tag() }}  <!-- CSRF token -->
+        {{ form.hidden_tag() }}
 
-        <h2>Log in</h2>
+        <h2>Admin Login</h2>
 
         <div class="inputBox">
-            {{ form.username.label }}
-            {{ form.username }}
-
+            {{ form.username(placeholder="Enter username", required=True) }}
+            <span>Username</span>
         </div>
 
         <div class="inputBox">
-            {{ form.password.label }}
-            {{ form.password }}
-
+            {{ form.password(placeholder="Enter password", required=True) }}
+            <span>Password</span>
         </div>
 
         <div class="inputBox">
             {{ form.submit(class="submit-btn") }}
         </div>
-
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class="flashes">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-        {% endwith %}
-
     </form>
 
-    <p>Don't have an account? <a href="{{ url_for('admin_signup') }}">Sign Up</a></p>
+    <p style="text-align: center;">
+        Don't have an account? 
+        <a href="{{ url_for('admin_signup') }}" style="color: #4caf50; text-decoration: none; font-weight: bold;">Sign Up</a>
+    </p>
+    
+    <p style="text-align: center; margin-top: 10px;">
+        <a href="{{ url_for('home') }}" style="color: #dff8df; text-decoration: none;">← Back to Home</a>
+    </p>
 </div>
-
-</body>
-</html>
+{% endblock %}

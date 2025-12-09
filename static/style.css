@@ -17,12 +17,12 @@ body {
 }
 
 /* ================================================
-   LOGO SECTION – ForesToFuture
+   LOGO SECTION - ForesToFuture
 ================================================ */
 .site-logo {
     text-align: center;
     margin-top: 40px;
-    margin-bottom: -20px; /* pulls hero closer */
+    margin-bottom: -20px;
     color: #ffffff;
     text-shadow: 1px 1px 3px #000;
 }
@@ -83,8 +83,6 @@ body {
     letter-spacing: 1px;
 }
 
-
-
 /* ======================================================
    TOP RIGHT NAVIGATION BAR
 ====================================================== */
@@ -111,86 +109,13 @@ body {
     color: white;
 }
 
-/* HERO BUTTON */
-.hero-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 25px;
-    background: #3c7d3c;
-    color: white;
-    border-radius: 6px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.hero-btn:hover {
-    background: #4caf50;
-    transform: scale(1.05);
-}
-
-/* FEATURE CARDS */
-.feature-wrapper {
-    display: flex;
-    justify-content: space-between;
-    gap: 25px;
-    margin: 40px 0;
-    flex-wrap: wrap;
-}
-
-.feature-box {
-    flex: 1;
-    min-width: 260px;
-    padding: 25px;
-
-    /* Slight dark-green frosted glass */
-    background: rgba(20, 60, 20, 0.28);   /* transparent dark green */
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    text-align: center;
-}
-
-.feature-icon {
-    font-size: 40px;
-    color: #2f5d34;
-    margin-bottom: 10px;
-}
-
-/* CTA BUTTON */
-.cta-box {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.cta-btn {
-    padding: 12px 28px;
-    background: linear-gradient(135deg, #4caf50, #3c7d3c);
-    color: white;
-    font-size: 18px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.cta-btn:hover {
-    background: linear-gradient(135deg, #66bb6a, #4caf50);
-    transform: scale(1.07);
-}
-
-
 /* ======================================================
    HERO SECTION
 ====================================================== */
 .hero {
     position: relative;
     height: 65vh;
-    background: url("{{ url_for('static', filename='forest.jpg') }}") no-repeat center/cover;
+    background: url("forest.jpg") no-repeat center/cover;
 }
 
 .hero-overlay {
@@ -222,6 +147,24 @@ body {
     line-height: 1.6;
 }
 
+/* HERO BUTTON */
+.hero-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #3c7d3c;
+    color: white;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.hero-btn:hover {
+    background: #4caf50;
+    transform: scale(1.05);
+}
+
 /* ======================================================
    FROSTED CONTENT SECTION
 ====================================================== */
@@ -230,7 +173,6 @@ body {
     margin: 50px auto;
     padding: 30px;
 
-    /* Slight dark-green frosted background */
     background: rgba(20, 60, 20, 0.25);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -242,6 +184,10 @@ body {
     line-height: 1.7;
 }
 
+.content h1 {
+    color: #2f5d34;
+    margin-bottom: 20px;
+}
 
 .content h2 {
     color: #2f5d34;
@@ -257,6 +203,75 @@ body {
     margin-bottom: 20px;
 }
 
+.content ol {
+    color: #ffffff;
+    line-height: 1.8;
+}
+
+/* FEATURE CARDS */
+.feature-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.feature-box {
+    flex: 1;
+    min-width: 260px;
+    padding: 25px;
+
+    background: rgba(20, 60, 20, 0.28);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 40px;
+    color: #4caf50;
+    margin-bottom: 10px;
+}
+
+.feature-box h3 {
+    color: #2f5d34;
+    margin-bottom: 10px;
+}
+
+.feature-box p {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+/* CTA BUTTON */
+.cta-box {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.cta-btn {
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #4caf50, #3c7d3c);
+    color: white;
+    font-size: 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.cta-btn:hover {
+    background: linear-gradient(135deg, #66bb6a, #4caf50);
+    transform: scale(1.07);
+}
+
 /* ======================================================
    CONTACT SECTION LAYOUT
 ====================================================== */
@@ -269,7 +284,7 @@ body {
 }
 
 /* ======================================================
-   LEFT COLUMN – CONTACT INFO
+   LEFT COLUMN - CONTACT INFO
 ====================================================== */
 .contact-info-list {
     flex: 1;
@@ -281,41 +296,48 @@ body {
     margin-bottom: 30px;
 }
 
-.info-box i {
-    font-size: 30px;
+.info-box .icon {
     margin-bottom: 10px;
-    color: #00c4ff;
+}
+
+.info-box .icon i {
+    font-size: 30px;
 }
 
 .info-box h3 {
     margin: 0 0 5px 0;
     font-size: 22px;
     font-weight: bold;
+    color: #2f5d34;
 }
 
 .info-box p {
     margin: 0;
     line-height: 1.6;
+    color: #ffffff;
 }
 
-/* ======================================================
-   ICON COLORS (Nature Theme)
-====================================================== */
+/* ICON COLORS (Nature Theme) */
 .fa-phone {
-    color: #66ff66;   /* vibrant nature green */
+    color: #66ff66;
 }
 
 .fa-envelope {
-    color: #4fc3f7;   /* sky blue */
+    color: #4fc3f7;
 }
 
 .fa-map-marker {
-    color: #ff7043;   /* earthy orange/red */
+    color: #ff7043;
 }
 
 /* ======================================================
-   RIGHT COLUMN – SEND MESSAGE FORM (Nature Theme)
+   RIGHT COLUMN - SEND MESSAGE FORM (Nature Theme)
 ====================================================== */
+.contactForm {
+    position: relative;
+    padding-bottom: 150px;
+}
+
 .card-form {
     flex: 1;
     background: rgba(255, 255, 255, 0.30);
@@ -336,49 +358,6 @@ body {
     color: #2f5d34;
     text-align: center;
     font-weight: bold;
-}
-
-/* SOCIAL MEDIA CONTACT UNDER FORM */
-.social-contact {
-    margin-top: 25px;
-    padding-top: 15px;
-    border-top: 1px solid rgba(0,0,0,0.15);
-}
-
-.social-contact h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: #2f5d34;
-    font-weight: bold;
-}
-
-.social-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.social-item i {
-    font-size: 22px;
-    margin-right: 10px;
-}
-
-/* Icon Colors */
-.social-item .fa-facebook { color: #1877f2; }
-.social-item .fa-instagram { color: #e4405f; }
-.social-item .fa-twitter { color: #1da1f2; }
-
-/* Link styling */
-.social-item a {
-    font-size: 16px;
-    color: #000;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.social-item a:hover {
-    color: #2f5d34; /* forest green hover */
-    text-decoration: underline;
 }
 
 /* SOCIAL MEDIA BOX INSIDE FORM */
@@ -429,16 +408,8 @@ body {
     text-decoration: underline;
 }
 
-.card-form {
-    position: relative; 
-    padding-bottom: 150px; /* ADD THIS */
-}
-
-
-
-
 /* ======================================================
-   FORM INPUTS – ECO FLOATING LABEL-Articles page
+   FORM INPUTS - ECO FLOATING LABEL
 ====================================================== */
 .card-form .inputBox {
     position: relative;
@@ -456,6 +427,11 @@ body {
     outline: none;
     font-size: 16px;
     color: #000;
+}
+
+.card-form .inputBox textarea {
+    min-height: 80px;
+    resize: vertical;
 }
 
 .card-form .inputBox span {
@@ -477,10 +453,18 @@ body {
     letter-spacing: 0.5px;
 }
 
+.card-form .inputBox label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4caf50;
+    font-weight: bold;
+}
+
 /* ======================================================
-   SUBMIT BUTTON – GREEN GRADIENT
+   SUBMIT BUTTON - GREEN GRADIENT
 ====================================================== */
-.card-form input[type="submit"] {
+.card-form input[type="submit"],
+.card-form .submit-btn {
     width: 150px;
     padding: 12px 18px;
     background: linear-gradient(135deg, #3c7d3c, #2f5d34);
@@ -493,13 +477,15 @@ body {
     font-weight: bold;
 }
 
-.card-form input[type="submit"]:hover {
+.card-form input[type="submit"]:hover,
+.card-form .submit-btn:hover {
     background: linear-gradient(135deg, #4caf50, #3c7d3c);
     transform: scale(1.03);
 }
 
-
-
+/* ======================================================
+   ARTICLES PAGE
+====================================================== */
 .articles-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -516,18 +502,24 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
 .article-card img {
     width: 100%;
     height: 160px;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .article-card h3 {
     margin: 15px 15px 5px;
-    color: #2f5d34;
+    color: #4caf50;
 }
 
 .article-card p {
@@ -543,7 +535,11 @@ body {
     color: #fff;
     text-decoration: none;
     border-radius: 6px;
+    font-weight: bold;
     transition: 0.3s;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
 }
 
 .article-card .read-more:hover {
@@ -551,107 +547,136 @@ body {
     transform: scale(1.05);
 }
 
-/*clickable image*/
-.articles-container { 
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
+.article-details {
+    display: none;
+    margin: 0 15px 15px;
+    color: #ffffff;
+    line-height: 1.5;
+}
 
-        .article-card {
-            background: rgba(20, 60, 20, 0.25);
-            backdrop-filter: blur(6px);
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+/* Modal for Full-Size Images */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+}
 
-        .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+}
 
-        .article-card img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            cursor: pointer;
-        }
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        .article-card h3 {
-            margin: 15px 15px 5px;
-            color: #2f5d34;
-        }
+.close:hover {
+    color: #ccc;
+}
 
-        .article-card p {
-            margin: 0 15px 10px;
-            color: #ffffff;
-            line-height: 1.5;
-        }
+/* ======================================================
+   ADMIN DASHBOARD
+====================================================== */
+.admin-table-wrapper {
+    overflow-x: auto;
+    margin: 20px 0;
+    background: rgba(20, 60, 20, 0.25);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    padding: 15px;
+}
 
-        .article-card .read-more {
-            margin: 10px 15px 15px;
-            padding: 8px 12px;
-            background: #3c7d3c;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: 0.3s;
-            text-align: center;
-            cursor: pointer;
-        }
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
 
-        .article-card .read-more:hover {
-            background: #4caf50;
-            transform: scale(1.05);
-        }
+.admin-table th,
+.admin-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
 
-        .article-details {
-            display: none;
-            margin: 0 15px 15px;
-            color: #ffffff;
-            line-height: 1.5;
-        }
+.admin-table th {
+    background: rgba(60, 125, 60, 0.5);
+    font-weight: bold;
+}
 
-        .content h1 {
-            color: #2f5d34;
-            margin-bottom: 20px;
-        }
+.admin-table tr:hover {
+    background: rgba(255,255,255,0.1);
+}
 
-        /* Modal for Full-Size Images */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            padding-top: 50px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.8);
-        }
+.delete-btn {
+    padding: 6px 12px;
+    background: #f44336;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: 0.3s;
+    display: inline-block;
+}
 
-        .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 12px;
-        }
+.delete-btn:hover {
+    background: #d32f2f;
+}
 
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+/* ======================================================
+   RESPONSIVE DESIGN
+====================================================== */
+@media (max-width: 768px) {
+    .contact-wrapper {
+        flex-direction: column;
+    }
+    
+    .feature-wrapper {
+        flex-direction: column;
+    }
+    
+    .hero-text h1 {
+        font-size: 32px;
+    }
+    
+    .top-right-nav {
+        position: relative;
+        top: 0;
+        right: 0;
+        text-align: center;
+        margin: 10px 0;
+    }
+    
+    .logo-container {
+        position: relative;
+        top: 0;
+        left: 0;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    
+    .social-box {
+        position: static;
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    .contactForm {
+        padding-bottom: 30px;
+    }
+}

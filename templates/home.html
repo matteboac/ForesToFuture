@@ -1,59 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home - ForesToFuture</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+{% extends "base.html" %}
 
-     <!-- Fade Animation CSS -->
-    <style>
-        body {
-            opacity: 1;
-            transition: opacity 0.6s ease;
-        }
-        body.fade-out {
-            opacity: 0;
-        }
-    </style>
+{% block title %}Home - ForesToFuture{% endblock %}
 
-    <!-- Fade Animation Script -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const links = document.querySelectorAll("nav a");
-
-            links.forEach(link => {
-                link.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    const url = e.target.href;
-                    document.body.classList.add("fade-out");
-                    setTimeout(() => {
-                        window.location.href = url;
-                    }, 500);
-                });
-            });
-        });
-    </script>
-
-</head>
-
-<body>
-
-<!-- Logo Section -->
-<div class="logo-container">
-    <img src="{{ url_for('static', filename='logo-10.webp') }}" alt="ForesToFuture Logo">
-    <span class="logo-text">ForesToFuture</span>
-</div>
-
-<!-- Navigation Bar -->
-<nav class="top-right-nav">
-    <a href="{{ url_for('home') }}">Home</a>
-    <a href="{{ url_for('about') }}">About</a>
-    <a href="{{ url_for('contact') }}">Contact</a>
-    <a href="{{ url_for('gallery') }}">Gallery</a>
-    <a href="{{ url_for('articles') }}">Articles</a>
-    <a href="{{ url_for('admin_login') }}">Admin</a>
-</nav>
-
+{% block content %}
 <!-- Hero Section -->
 <section class="hero">
     <div class="hero-overlay"></div>
@@ -66,16 +15,14 @@
 
 <!-- Main Content -->
 <div class="content">
-
     <h2>Welcome to ForesToFuture</h2>
     <p>
         ForesToFuture is a platform dedicated to spreading awareness about deforestation and biodiversity loss.
-        Forests are home to more than half of the world’s land-based species, yet millions of hectares are cleared each year.
+        Forests are home to more than half of the world's land-based species, yet millions of hectares are cleared each year.
     </p>
 
     <!-- Feature Cards -->
     <div class="feature-wrapper">
-
         <div class="feature-box">
             <i class="fa fa-leaf feature-icon"></i>
             <h3>Our Topic</h3>
@@ -93,7 +40,6 @@
             <h3>Why It Matters</h3>
             <p>Forests stabilize the climate, store carbon, and support millions of species crucial to life on Earth.</p>
         </div>
-
     </div>
 
     <h2>Join Us</h2>
@@ -105,8 +51,5 @@
     <div class="cta-box">
         <a href="{{ url_for('contact') }}" class="cta-btn">Get Involved</a>
     </div>
-
 </div>
-
-</body>
-</html>
+{% endblock %}

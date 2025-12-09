@@ -1,66 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Articles - ForesToFuture</title>
+{% extends "base.html" %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+{% block title %}Articles - ForesToFuture{% endblock %}
 
-    <!-- Fade Animation CSS -->
-    <style>
-        body {
-            opacity: 1;
-            transition: opacity 0.6s ease;
-        }
-        body.fade-out {
-            opacity: 0;
-        }
-        </style>
-
-    <!-- Fade Animation Script -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const links = document.querySelectorAll("nav a");
-            links.forEach(link => {
-                link.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    const url = e.target.href;
-                    document.body.classList.add("fade-out");
-                    setTimeout(() => {
-                        window.location.href = url;
-                    }, 500);
-                });
-            });
-        });
-    </script>
-</head>
-<body>
-
-<!-- Logo Section -->
-<div class="logo-container">
-    <img src="{{ url_for('static', filename='logo-10.webp') }}" alt="ForesToFuture Logo">
-    <span class="logo-text">ForesToFuture</span>
-</div>
-
-<!-- Navigation -->
-<nav class="top-right-nav">
-    <a href="{{ url_for('home') }}">Home</a>
-    <a href="{{ url_for('about') }}">About</a>
-    <a href="{{ url_for('contact') }}">Contact</a>
-    <a href="{{ url_for('gallery') }}">Gallery</a>
-    <a href="{{ url_for('articles') }}">Articles</a>
-    <a href="{{ url_for('admin_login') }}">Admin</a>
-</nav>
-
+{% block content %}
 <!-- Main Content -->
 <div class="content">
     <h1>Articles & Information</h1>
     <p>Explore short write-ups about the causes, effects, and solutions to deforestation and biodiversity loss.</p>
 
     <div class="articles-container">
-
         <!-- Article 1 -->
         <div class="article-card">
             <img src="{{ url_for('static', filename='images/deforestation.jfif') }}" alt="Deforestation Causes" onclick="openModal(this.src)">
@@ -115,7 +63,6 @@
             </div>
             <div class="read-more" onclick="toggleDetails('details5')">Read More</div>
         </div>
-
     </div>
 </div>
 
@@ -124,8 +71,9 @@
     <span class="close">&times;</span>
     <img class="modal-content" id="modalImage">
 </div>
+{% endblock %}
 
-<!-- JavaScript -->
+{% block extra_js %}
 <script>
 function toggleDetails(id) {
     const el = document.getElementById(id);
@@ -143,6 +91,4 @@ function closeModal() {
     document.getElementById("imgModal").style.display = "none";
 }
 </script>
-
-</body>
-</html>
+{% endblock %}

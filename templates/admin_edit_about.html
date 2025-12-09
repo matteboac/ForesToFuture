@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Edit About Content - ForesToFuture{% endblock %}
+
+{% block navigation %}
+<nav class="top-right-nav">
+    <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('admin_edit_about') }}">Edit About</a>
+    <a href="{{ url_for('home') }}">View Site</a>
+    <a href="{{ url_for('admin_logout') }}">Logout</a>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Edit About Page Content</h1>
+    <p>Update the dynamic content that appears on the About page.</p>
+
+    <div class="contactForm card-form" style="max-width: 800px; margin: 30px auto;">
+        <form method="POST" action="{{ url_for('admin_edit_about') }}">
+            {{ form.hidden_tag() }}
+
+            <h2>About Page Editor</h2>
+
+            <div class="inputBox">
+                {{ form.general_objective.label }}
+                {{ form.general_objective(rows=6, style="height: auto;") }}
+            </div>
+
+            <div class="inputBox">
+                {{ form.background_info.label }}
+                {{ form.background_info(rows=6, style="height: auto;") }}
+            </div>
+
+            <div class="inputBox">
+                {{ form.submit(class="submit-btn") }}
+            </div>
+        </form>
+        
+        <div style="text-align: center; margin-top: 15px;">
+            <a href="{{ url_for('admin_dashboard') }}" style="color: #4caf50; text-decoration: none;">← Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+
+<style>
+.inputBox textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid #2f5d34;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    resize: vertical;
+}
+
+.inputBox label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4caf50;
+    font-weight: bold;
+}
+</style>
+{% endblock %}

@@ -1,144 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>About - ForesToFuture</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+{% extends "base.html" %}
 
-    <!-- Fade Animation CSS -->
-    <style>
-        body {
-            opacity: 1;
-            transition: opacity 0.6s ease;
-        }
-        body.fade-out {
-            opacity: 0;
-        }
-    </style>
+{% block title %}About - ForesToFuture{% endblock %}
 
-    <!-- Fade Animation Script -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const links = document.querySelectorAll("nav a");
-
-            links.forEach(link => {
-                link.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    const url = e.target.href;
-                    document.body.classList.add("fade-out");
-                    setTimeout(() => {
-                        window.location.href = url;
-                    }, 500);
-                });
-            });
-        });
-    </script>
-</head>
-
-<body>
-
-    <!-- Logo -->
-    <div class="logo-container">
-        <img src="{{ url_for('static', filename='logo-10.webp') }}" alt="ForesToFuture Logo">
-        <span class="logo-text">ForesToFuture</span>
+{% block content %}
+<!-- HERO BANNER -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+        <h1>About This Project</h1>
+        <p>Discover the mission behind ForesToFuture and how we protect forests, biodiversity, and the climate.</p>
     </div>
+</section>
 
-    <!-- Navigation -->
-    <nav class="top-right-nav">
-        <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('about') }}">About</a>
-        <a href="{{ url_for('contact') }}">Contact</a>
-        <a href="{{ url_for('gallery') }}">Gallery</a>
-        <a href="{{ url_for('articles') }}">Articles</a>
-        <a href="{{ url_for('admin_login') }}">Admin</a>
-    </nav>
+<!-- Main Content (Blur Glass Box) -->
+<div class="content">
+    <h2>I. General Objective</h2>
+    <p>{% if content %}{{ content.general_objective }}{% else %}Loading content...{% endif %}</p>
+    
+    <p>
+        The platform aims to educate the public on how forest loss contributes to climate change, 
+        endangers wildlife, and threatens ecosystem stability. By providing accessible digital information, 
+        this initiative empowers communities—especially the younger generation—to take active roles in 
+        environmental stewardship.
+    </p>
 
-    <!-- HERO BANNER (same style as Home) -->
-    <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-text">
-            <h1>About This Project</h1>
-            <p>Discover the mission behind ForesToFuture and how we protect forests, biodiversity, and the climate.</p>
-        </div>
-    </section>
+    <h2>II. Specific Objectives</h2>
+    <ol>
+        <li>Increase public understanding of the severe impacts of deforestation and biodiversity decline.</li>
+        <li>Analyze climate-related consequences such as rising CO₂ levels, ecosystem disruption, and habitat loss.</li>
+        <li>Provide a free, research-based online platform for environmental education.</li>
+        <li>Identify key drivers of deforestation, including agriculture, logging, and urban development.</li>
+        <li>Raise awareness on the global and local consequences of biodiversity loss.</li>
+        <li>Inspire citizens to participate in conservation and reforestation efforts.</li>
+    </ol>
 
-    <!-- Main Content (Blur Glass Box) -->
-    <div class="content">
+    <h2>Background Information</h2>
+    <p>{% if content %}{{ content.background_info }}{% else %}Loading content...{% endif %}</p>
+    
+    <p>
+        Forests play a vital role in regulating climate, supporting wildlife, protecting watersheds, and 
+        sustaining livelihoods. When forests are destroyed, ecosystems collapse and communities become more 
+        vulnerable to natural disasters.
+    </p>
 
-        <h2>I. General Objective</h2>
-        <p>
-            The primary objective of <strong>ForesToFuture</strong> is to raise nationwide awareness about 
-            <strong>Deforestation</strong> and <strong>Biodiversity Loss</strong> in the Philippines.  
-            This project aligns strongly with two major Sustainable Development Goals:
-            <strong>SDG 13 – Climate Action</strong> and <strong>SDG 15 – Life on Land</strong>.
-        </p>
+    <p>
+        ForesToFuture was created to strengthen environmental awareness and inspire nationwide action toward 
+        restoring forest ecosystems and protecting wildlife.
+    </p>
 
-        <p>
-            The platform aims to educate the public on how forest loss contributes to climate change, 
-            endangers wildlife, and threatens ecosystem stability. By providing accessible digital information, 
-            this initiative empowers communities—especially the younger generation—to take active roles in 
-            environmental stewardship.
-        </p>
+    <h2>III. Sustainable Development Goals (SDGs)</h2>
 
-        <h2>II. Specific Objectives</h2>
-
-        <ol>
-            <li>Increase public understanding of the severe impacts of deforestation and biodiversity decline.</li>
-            <li>Analyze climate-related consequences such as rising CO₂ levels, ecosystem disruption, and habitat loss.</li>
-            <li>Provide a free, research-based online platform for environmental education.</li>
-            <li>Identify key drivers of deforestation, including agriculture, logging, and urban development.</li>
-            <li>Raise awareness on the global and local consequences of biodiversity loss.</li>
-            <li>Inspire citizens to participate in conservation and reforestation efforts.</li>
-        </ol>
-
-        <h2>Background Information</h2>
-        <p>
-            The Philippines is one of Earth’s richest biodiversity hotspots, yet it faces one of the fastest rates 
-            of forest decline. Illegal logging, mining, agriculture, and land conversion continue to threaten 
-            critical ecosystems home to thousands of unique species.
-        </p>
-
-        <p>
-            Forests play a vital role in regulating climate, supporting wildlife, protecting watersheds, and 
-            sustaining livelihoods. When forests are destroyed, ecosystems collapse and communities become more 
-            vulnerable to natural disasters.
-        </p>
-
-        <p>
-            ForesToFuture was created to strengthen environmental awareness and inspire nationwide action toward 
-            restoring forest ecosystems and protecting wildlife.
-        </p>
-
-        <h2>III. Sustainable Development Goals (SDGs)</h2>
-
-        <!-- Styled like Home Page Feature Boxes -->
-        <div class="feature-wrapper">
-
-            <!-- SDG 13 Box -->
-            <div class="feature-box">
-                <i class="fa-solid fa-cloud-sun-rain feature-icon"></i>
-                <h3>SDG 13: Climate Action</h3>
-                <p>
-                    SDG 13 calls for urgent action to reduce climate impacts. Deforestation increases greenhouse 
-                    gases and weakens natural protection systems. Through education and advocacy, this project 
-                    encourages communities to adopt climate-resilient and sustainable practices.
-                </p>
-            </div>
-
-            <!-- SDG 15 Box -->
-            <div class="feature-box">
-                <i class="fa-solid fa-seedling feature-icon"></i>
-                <h3>SDG 15: Life on Land</h3>
-                <p>
-                    SDG 15 focuses on protecting terrestrial ecosystems and restoring degraded forests. 
-                    ForesToFuture highlights the importance of reforestation, wildlife conservation, and the 
-                    long-term protection of natural habitats.
-                </p>
-            </div>
-
+    <!-- Styled like Home Page Feature Boxes -->
+    <div class="feature-wrapper">
+        <!-- SDG 13 Box -->
+        <div class="feature-box">
+            <i class="fa-solid fa-cloud-sun-rain feature-icon"></i>
+            <h3>SDG 13: Climate Action</h3>
+            <p>
+                SDG 13 calls for urgent action to reduce climate impacts. Deforestation increases greenhouse 
+                gases and weakens natural protection systems. Through education and advocacy, this project 
+                encourages communities to adopt climate-resilient and sustainable practices.
+            </p>
         </div>
 
+        <!-- SDG 15 Box -->
+        <div class="feature-box">
+            <i class="fa-solid fa-seedling feature-icon"></i>
+            <h3>SDG 15: Life on Land</h3>
+            <p>
+                SDG 15 focuses on protecting terrestrial ecosystems and restoring degraded forests. 
+                ForesToFuture highlights the importance of reforestation, wildlife conservation, and the 
+                long-term protection of natural habitats.
+            </p>
+        </div>
     </div>
-
-</body>
-</html>
+</div>
+{% endblock %}
