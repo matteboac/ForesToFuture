@@ -5,7 +5,54 @@
 {% block content %}
 <div class="content">
     <h1>Gallery</h1>
-    <br>
-    <p>{{ p }}</p>
+    <p>Welcome to our Gallery! Explore how forests are affected and why protecting them matters for our planet’s future.</p>
+<div class="articles-container">
+        <!-- Article 1 -->
+        <div class="article-card">
+            <img src="{{ url_for('static', filename='images/infograph1.jpg') }}" alt="Deforestation Causes" onclick="openModal(this.src)">
+            <h3>Our Planet, Our Future</h3>
+            <p>Learn on how to have a safe and bright future for our planet.</p>
+            <div id="details1" class="article-details">
+                <p>Protecting forests is key to ensuring a safe and healthy future for everyone. By preventing deforestation, we preserve vital habitats for wildlife, maintain clean air and water, and combat climate change. Forests act as natural shields against floods and soil erosion, supporting the communities that rely on them. Taking steps to stop deforestation today means safeguarding resources and creating a sustainable environment for generations to come.</p>
+            </div>
+            <div class="read-more" onclick="toggleDetails('details1')">Read More</div>
+        </div>
+    </div>
+
+        <!-- Article 2 -->
+        <div class="article-card">
+            <img src="{{ url_for('static', filename='images/infograph2.jpg') }}" alt="Effects on Wildlife" onclick="openModal(this.src)">
+            <h3>Life On Line</h3>
+            <p>Discover what will happen if deforestation continues.</p>
+            <div id="details2" class="article-details">
+                <p>The world will face serious problems. Trees and forests help clean the air, regulate the climate, and provide homes for countless animals. Cutting them down leads to loss of biodiversity, more carbon in the atmosphere, and extreme weather events like floods and droughts. Soil becomes weaker, crops fail, and communities that depend on forests suffer. Continuing deforestation puts both nature and people at great risk.</p>
+            </div>
+        <div class="read-more" onclick="toggleDetails('details2')">Read More</div>
+     </div>
+
+<!-- Modal for Full-Size Image -->
+<div id="imgModal" class="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function toggleDetails(id) {
+    const el = document.getElementById(id);
+    el.style.display = (el.style.display === "none" || el.style.display === "") ? "block" : "none";
+}
+
+function openModal(src) {
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImage");
+    modal.style.display = "block";
+    modalImg.src = src;
+}
+
+function closeModal() {
+    document.getElementById("imgModal").style.display = "none";
+}
+</script>
 {% endblock %}

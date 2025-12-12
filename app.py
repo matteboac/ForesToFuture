@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify
 from forms import AdminLoginForm, AdminSignupForm, AboutContentForm
-from models import db, Admin, Contact, AboutContent, DeforestationData, CountryMetadata
+from models import db, Admin, Contact, AboutContent, DeforestationData, CountryMetadata, Country, BiodiversityStatus
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
@@ -233,6 +233,28 @@ def test_data():
     <p>Total country metadata: {metadata_count}</p>
     <p>Countries: {[c[0] for c in countries]}</p>
     """
+
+@app.route('/biodiversity')
+def biodiversity():
+    countries = [c.name for c in Country.query.order_by(Country.name).all()]
+    return render_template('biodiversity.html', countries=countries)
+
+
+@app.route("/api/biodiversity/<country>")
+def biodiversity_api(country):
+    rows = BiodiversityStatus.query.join(Country)\
+        .filter(Country.name == country)\
+        .order_by(BiodiversityStatus.year).all()
+
+    if not rows:
+        return jsonify({"error": "No data found for this country"}), 404
+
+    return jsonify({
+        "years": [r.year for r in rows],
+        "affected_species": [r.affected_species for r in rows],
+        "ecosystem_health_index": [r.ecosystem_health_index for r in rows]
+    })
+
 
 # ========== MAIN ==========
 

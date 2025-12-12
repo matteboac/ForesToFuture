@@ -57,3 +57,22 @@ class CountryMetadata(db.Model):
     total_forest_loss_2015_2025 = db.Column(db.Integer)
     avg_annual_loss_rate = db.Column(db.Float)
     description = db.Column(db.Text)
+
+class Country(db.Model):
+    __tablename__ = 'countries'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False, unique=True)
+    biodiversity_records = db.relationship('BiodiversityStatus', backref='country', lazy=True)
+
+class BiodiversityStatus(db.Model):
+    __tablename__ = 'biodiversity_status'
+    id = db.Column(db.Integer, primary_key=True)
+    country_name = db.Column(db.String(100), nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    affected_species = db.Column(db.Integer, nullable=False)
+    ecosystem_health_index = db.Column(db.Float, nullable=True)
+    country_id = db.Column(db.Integer, db.ForeignKey('countries.id'), nullable=False)
+
+    __table_args__ = (
+        db.UniqueConstraint('country_id', 'year', name='unique_countries_year'),
+    )
