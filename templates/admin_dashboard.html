@@ -7,7 +7,6 @@
     <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
     <a href="{{ url_for('admin_edit_about') }}">Edit About</a>
     <a href="{{ url_for('admin_deforestation') }}">Deforestation Data</a>
-    <a href="{{ url_for('home') }}">View Site</a>
     <a href="{{ url_for('admin_logout') }}">Logout</a>
 </nav>
 {% endblock %}
@@ -100,13 +99,6 @@
             <h3>Database Records</h3>
             <p><strong>{{ deforestation_records }}</strong> deforestation data points</p>
             <p><strong>{{ contacts|length }}</strong> contact messages</p>
-        </div>
-
-        <div class="feature-box">
-            <i class="fa fa-globe feature-icon"></i>
-            <h3>Public Pages</h3>
-            <p>All content visible to visitors</p>
-            <a href="{{ url_for('home') }}" class="hero-btn" style="margin-top: 10px;">View Site</a>
         </div>
     </div>
 </div>

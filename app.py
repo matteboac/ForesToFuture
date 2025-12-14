@@ -65,12 +65,10 @@ def articles():
 
 @app.route('/deforestation')
 def deforestation():
-    """Display deforestation graph page"""
     return render_template("deforestation.html")
 
 @app.route('/api/deforestation/<country>')
 def get_deforestation_data(country):
-    """API endpoint to get deforestation data for a specific country"""
     try:
         # Get deforestation data
         data = DeforestationData.query.filter_by(country=country).order_by(DeforestationData.year).all()
@@ -99,7 +97,6 @@ def get_deforestation_data(country):
 
 @app.route('/api/deforestation/countries')
 def get_countries():
-    """API endpoint to get list of all countries with data"""
     try:
         countries = db.session.query(DeforestationData.country).distinct().all()
         return jsonify({'countries': [c[0] for c in countries]})
@@ -212,7 +209,6 @@ def admin_delete_contact(contact_id):
 
 @app.route('/admin/deforestation')
 def admin_deforestation():
-    """Admin page to view deforestation data"""
     if 'admin_id' not in session:
         flash("Please log in to access this page.", "error")
         return redirect(url_for('admin_login'))
@@ -222,7 +218,6 @@ def admin_deforestation():
 
 @app.route('/test-data')
 def test_data():
-    """Test if data exists in database"""
     countries = db.session.query(DeforestationData.country).distinct().all()
     count = DeforestationData.query.count()
     metadata_count = CountryMetadata.query.count()
