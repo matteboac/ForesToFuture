@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}{{ action }} Country Metadata - ForesToFuture{% endblock %}
+
+{% block navigation %}
+<nav class="top-right-nav">
+    <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('admin_deforestation') }}">Back to Data</a>
+    <a href="{{ url_for('admin_logout') }}">Logout</a>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>{{ action }} Country Metadata</h1>
+    <p>{{ action }} summary statistics and description for a country.</p>
+
+    <div class="contactForm card-form" style="max-width: 800px; margin: 30px auto;">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <h2>Country Metadata Form</h2>
+
+            <div class="inputBox">
+                {{ form.country.label }}
+                {{ form.country(class="form-control") }}
+                {% if form.country.errors %}
+                    <span style="color: #f44336;">{{ form.country.errors[0] }}</span>
+                {% endif %}
+            </div>
+
+            <div class="inputBox">
+                {{ form.total_forest_loss_2015_2025.label }}
+                {{ form.total_forest_loss_2015_2025(class="form-control") }}
+                {% if form.total_forest_loss_2015_2025.errors %}
+                    <span style="color: #f44336;">{{ form.total_forest_loss_2015_2025.errors[0] }}</span>
+                {% endif %}
+            </div>
+
+            <div class="inputBox">
+                {{ form.avg_annual_loss_rate.label }}
+                {{ form.avg_annual_loss_rate(class="form-control", step="0.01") }}
+                {% if form.avg_annual_loss_rate.errors %}
+                    <span style="color: #f44336;">{{ form.avg_annual_loss_rate.errors[0] }}</span>
+                {% endif %}
+            </div>
+
+            <div class="inputBox">
+                {{ form.description.label }}
+                {{ form.description(rows=6, style="height: auto;") }}
+                {% if form.description.errors %}
+                    <span style="color: #f44336;">{{ form.description.errors[0] }}</span>
+                {% endif %}
+            </div>
+
+            <div class="inputBox">
+                {{ form.submit(class="submit-btn") }}
+            </div>
+        </form>
+        
+        <div style="text-align: center; margin-top: 15px;">
+            <a href="{{ url_for('admin_deforestation') }}" style="color: #4caf50; text-decoration: none;">← Back to Deforestation Data</a>
+        </div>
+    </div>
+</div>
+
+<style>
+.inputBox input[type="text"],
+.inputBox input[type="number"],
+.inputBox textarea {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid #2f5d34;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+}
+
+.inputBox textarea {
+    resize: vertical;
+}
+
+.inputBox label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+}
+</style>
+{% endblock %}

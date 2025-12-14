@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Countries - ForesToFuture{% endblock %}
+
+{% block navigation %}
+<nav class="top-right-nav">
+    <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('admin_edit_about') }}">Edit About</a>
+    <a href="{{ url_for('admin_deforestation') }}">Deforestation Data</a>
+    <a href="{{ url_for('admin_biodiversity') }}">Biodiversity Data</a>
+    <a href="{{ url_for('admin_countries') }}">Manage Countries</a>
+    <a href="{{ url_for('home') }}">View Site</a>
+    <a href="{{ url_for('admin_logout') }}">Logout</a>
+</nav>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+        <h1>Country Management</h1>
+        <p>Add, Edit, and Delete countries for biodiversity tracking</p>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="content">
+    <h2>🌍 Countries List</h2>
+    
+    <div style="text-align: right; margin-bottom: 20px;">
+        <a href="{{ url_for('admin_add_country') }}" class="cta-btn">+ Add New Country</a>
+    </div>
+
+    <div style="background: rgba(255, 249, 230, 0.15); border-left: 5px solid #4caf50; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+        <p style="margin: 0; color: rgba(255,255,255,0.9);">
+            💡 <strong>Note:</strong> Countries are used for biodiversity data tracking. You can add new countries here or directly when adding biodiversity data.
+        </p>
+    </div>
+
+    {% if countries %}
+    <div class="admin-table-wrapper">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Country Name</th>
+                    <th>Biodiversity Records</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for country in countries %}
+                <tr>
+                    <td><strong>{{ country.name }}</strong></td>
+                    <td>{{ country.biodiversity_records|length }} record(s)</td>
+                    <td>
+                        <a href="{{ url_for('admin_edit_country', id=country.id) }}" 
+                           class="hero-btn" 
+                           style="padding: 6px 12px; font-size: 0.9em; margin-right: 5px;">
+                            Edit
+                        </a>
+                        <a href="{{ url_for('admin_delete_country', id=country.id) }}" 
+                           class="delete-btn"
+                           onclick="return confirm('Are you sure you want to delete {{ country.name }}? This will fail if the country has biodiversity records.')">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>No countries found. <a href="{{ url_for('admin_add_country') }}" style="color: #4caf50;">Add one now</a></p>
+    {% endif %}
+
+    <div style="margin-top: 40px; text-align: center;">
+        <a href="{{ url_for('admin_biodiversity') }}" class="cta-btn">
+            🌿 Back to Biodiversity Data
+        </a>
+    </div>
+</div>
+
+<style>
+.admin-table-wrapper {
+    overflow-x: auto;
+    margin: 20px 0;
+    background: rgba(20, 60, 20, 0.25);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.admin-table th {
+    background: rgba(60, 125, 60, 0.5);
+    font-weight: bold;
+}
+
+.admin-table tr:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.delete-btn {
+    padding: 6px 12px;
+    background: #f44336;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.delete-btn:hover {
+    background: #d32f2f;
+}
+</style>
+{% endblock %}

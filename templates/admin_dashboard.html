@@ -7,6 +7,8 @@
     <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
     <a href="{{ url_for('admin_edit_about') }}">Edit About</a>
     <a href="{{ url_for('admin_deforestation') }}">Deforestation Data</a>
+    <a href="{{ url_for('admin_biodiversity') }}">Biodiversity Data</a>
+    <a href="{{ url_for('home') }}">View Site</a>
     <a href="{{ url_for('admin_logout') }}">Logout</a>
 </nav>
 {% endblock %}
@@ -35,18 +37,24 @@
         </div>
 
         <div class="feature-box">
-            <i class="fa fa-envelope feature-icon"></i>
-            <h3>Contact Messages</h3>
-            <p>View and manage messages submitted through the contact form.</p>
-            <p><strong>{{ contacts|length }}</strong> message(s) received</p>
-        </div>
-
-        <div class="feature-box">
             <i class="fa fa-chart-bar feature-icon"></i>
             <h3>Deforestation Data</h3>
             <p>Manage global deforestation statistics and country data.</p>
             <p><strong>{{ deforestation_countries }}</strong> countries tracked</p>
+            <p><strong>{{ deforestation_records }}</strong> data records</p>
             <a href="{{ url_for('admin_deforestation') }}" class="hero-btn" style="margin-top: 10px;">Manage Data</a>
+        </div>
+
+        <div class="feature-box">
+            <i class="fa fa-leaf feature-icon"></i>
+            <h3>Biodiversity Data</h3>
+            <p>Manage biodiversity and ecosystem health statistics.</p>
+            <p><strong>{{ biodiversity_countries }}</strong> countries available</p>
+            <p><strong>{{ biodiversity_records }}</strong> biodiversity records</p>
+            <div style="margin-top: 10px;">
+                <a href="{{ url_for('admin_biodiversity') }}" class="hero-btn">Manage Data</a>
+                <a href="{{ url_for('get_countries') }}" class="hero-btn" style="margin-left: 5px; background: #3c7d3c;">Countries</a>
+            </div>
         </div>
     </div>
 
@@ -59,7 +67,6 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Message</th>
-                    <th>Date</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -69,7 +76,6 @@
                     <td>{{ contact.name }}</td>
                     <td>{{ contact.email }}</td>
                     <td>{{ contact.message[:50] }}{% if contact.message|length > 50 %}...{% endif %}</td>
-                    <td>{% if contact.created_at %}{{ contact.created_at.strftime('%Y-%m-%d') }}{% else %}N/A{% endif %}</td>
                     <td>
                         <a href="{{ url_for('admin_delete_contact', contact_id=contact.id) }}" 
                            class="delete-btn"
@@ -89,16 +95,23 @@
     <h2>Quick Stats</h2>
     <div class="feature-wrapper">
         <div class="feature-box">
-            <i class="fa fa-info-circle feature-icon"></i>
-            <h3>About Content</h3>
-            <p>Last updated: {% if about_content and about_content.updated_at %}{{ about_content.updated_at.strftime('%B %d, %Y') }}{% else %}Never{% endif %}</p>
+            <i class="fa fa-envelope feature-icon"></i>
+            <h3>Contact Messages</h3>
+            <p><strong>{{ contacts|length }}</strong> message(s) received</p>
         </div>
 
         <div class="feature-box">
             <i class="fa fa-database feature-icon"></i>
             <h3>Database Records</h3>
-            <p><strong>{{ deforestation_records }}</strong> deforestation data points</p>
-            <p><strong>{{ contacts|length }}</strong> contact messages</p>
+            <p><strong>{{ deforestation_records }}</strong> deforestation records</p>
+            <p><strong>{{ biodiversity_records }}</strong> biodiversity records</p>
+        </div>
+
+        <div class="feature-box">
+            <i class="fa fa-globe feature-icon"></i>
+            <h3>Public Pages</h3>
+            <p>All content visible to visitors</p>
+            <a href="{{ url_for('home') }}" class="hero-btn" style="margin-top: 10px;">View Site</a>
         </div>
     </div>
 </div>

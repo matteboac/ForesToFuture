@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}{{ action }} Country - ForesToFuture{% endblock %}
+
+{% block navigation %}
+<nav class="top-right-nav">
+    <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('admin_countries') }}">Back to Countries</a>
+    <a href="{{ url_for('admin_logout') }}">Logout</a>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>{{ action }} Country</h1>
+    <p>{{ action }} a country for biodiversity data tracking.</p>
+
+    <div class="contactForm card-form" style="max-width: 600px; margin: 30px auto;">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <h2>Country Form</h2>
+
+            <div class="inputBox">
+                {{ form.name.label }}
+                {{ form.name(class="form-control", placeholder="e.g., Philippines, Brazil, etc.") }}
+                {% if form.name.errors %}
+                    <span style="color: #f44336;">{{ form.name.errors[0] }}</span>
+                {% endif %}
+            </div>
+
+            <div class="inputBox">
+                {{ form.submit(class="submit-btn") }}
+            </div>
+        </form>
+        
+        <div style="text-align: center; margin-top: 15px;">
+            <a href="{{ url_for('admin_countries') }}" style="color: #4caf50; text-decoration: none;">← Back to Countries</a>
+        </div>
+    </div>
+</div>
+
+<style>
+.inputBox input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid #2f5d34;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+}
+
+.inputBox label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+}
+</style>
+{% endblock %}

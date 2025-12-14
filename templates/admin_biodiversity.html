@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Biodiversity Data Management - ForesToFuture{% endblock %}
+
+{% block navigation %}
+<nav class="top-right-nav">
+    <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('admin_edit_about') }}">Edit About</a>
+    <a href="{{ url_for('admin_deforestation') }}">Deforestation Data</a>
+    <a href="{{ url_for('admin_biodiversity') }}">Biodiversity Data</a>
+    <a href="{{ url_for('home') }}">View Site</a>
+    <a href="{{ url_for('admin_logout') }}">Logout</a>
+</nav>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+        <h1>Biodiversity Data Management</h1>
+        <p>Add, Edit, and Delete biodiversity records</p>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="content">
+    <h2>🌿 Biodiversity Status Records</h2>
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+        <div>
+            <a href="{{ url_for('admin_add_biodiversity') }}" class="cta-btn">+ Add New Data</a>
+        </div>
+        <div>
+            <a href="{{ url_for('admin_countries') }}" class="hero-btn" style="padding: 12px 20px;">
+                🌍 Manage Countries ({{ countries|length }})
+            </a>
+        </div>
+    </div>
+
+    {% if biodiversity_records %}
+    <div class="admin-table-wrapper">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Year</th>
+                    <th>Affected Species</th>
+                    <th>Ecosystem Health Index</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in biodiversity_records %}
+                <tr>
+                    <td><strong>{{ data.country_name }}</strong></td>
+                    <td>{{ data.year }}</td>
+                    <td>{{ "{:,}".format(data.affected_species) }}</td>
+                    <td>{{ "%.1f"|format(data.ecosystem_health_index) if data.ecosystem_health_index else 'N/A' }}</td>
+                    <td>
+                        <a href="{{ url_for('admin_edit_biodiversity', id=data.id) }}" 
+                           class="hero-btn" 
+                           style="padding: 6px 12px; font-size: 0.9em; margin-right: 5px;">
+                            Edit
+                        </a>
+                        <a href="{{ url_for('admin_delete_biodiversity', id=data.id) }}" 
+                           class="delete-btn"
+                           onclick="return confirm('Are you sure you want to delete this record?')">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>No biodiversity data records found. <a href="{{ url_for('admin_add_biodiversity') }}" style="color: #4caf50;">Add one now</a></p>
+    {% endif %}
+
+    <div style="margin-top: 40px; text-align: center;">
+        <a href="{{ url_for('biodiversity') }}" class="cta-btn">
+            🌿 View Public Biodiversity Page
+        </a>
+    </div>
+</div>
+
+<style>
+.admin-table-wrapper {
+    overflow-x: auto;
+    margin: 20px 0;
+    background: rgba(20, 60, 20, 0.25);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.admin-table th {
+    background: rgba(60, 125, 60, 0.5);
+    font-weight: bold;
+}
+
+.admin-table tr:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.delete-btn {
+    padding: 6px 12px;
+    background: #f44336;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.delete-btn:hover {
+    background: #d32f2f;
+}
+</style>
+{% endblock %}
