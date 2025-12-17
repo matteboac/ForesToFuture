@@ -15,10 +15,12 @@ db.init_app(app)
 
 # ========== PUBLIC ROUTES ==========
 
+# Home page
 @app.route('/')
 def home():
     return render_template("home.html")
 
+# About page – displays project objectives and background
 @app.route('/about')
 def about():
     content = AboutContent.query.first()
@@ -31,6 +33,7 @@ def about():
         db.session.commit()
     return render_template("about.html", content=content)
 
+# Contact page – handles contact form submissions
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     text = "If any case have a problem about this website, just contact us!"
@@ -49,11 +52,13 @@ def contact():
     
     return render_template("contact.html", text=text)
 
+# Gallery page
 @app.route('/gallery')
 def gallery():
     p = "Welcome to gallery page!"
     return render_template("gallery.html", p=p)
 
+# Articles page
 @app.route('/articles')
 def articles():
     a = "Welcome to Articles page!"
@@ -61,10 +66,12 @@ def articles():
 
 # ========== DEFORESTATION ROUTES ==========
 
+# Deforestation visualization page
 @app.route('/deforestation')
 def deforestation():
     return render_template("deforestation.html")
 
+# API endpoint – returns deforestation data for a specific country
 @app.route('/api/deforestation/<country>')
 def get_deforestation_data(country):
     try:
@@ -90,6 +97,8 @@ def get_deforestation_data(country):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+
+# API endpoint – returns list of available countries with deforestation data
 @app.route('/api/deforestation/countries')
 def get_countries():
     try:
@@ -100,11 +109,13 @@ def get_countries():
 
 # ========== BIODIVERSITY ROUTES ==========
 
+# Biodiversity page – shows dropdown of countries
 @app.route('/biodiversity')
 def biodiversity():
     countries = [c.name for c in Country.query.order_by(Country.name).all()]
     return render_template('biodiversity.html', countries=countries)
 
+# API endpoint – returns biodiversity data for a country
 @app.route("/api/biodiversity/<country>")
 def biodiversity_api(country):
     rows = BiodiversityStatus.query.join(Country)\
@@ -122,6 +133,7 @@ def biodiversity_api(country):
 
 # ========== ADMIN ROUTES ==========
 
+# Admin signup page
 @app.route('/admin/signup', methods=['GET', 'POST'])
 def admin_signup():
     form = AdminSignupForm()
@@ -148,6 +160,7 @@ def admin_signup():
     
     return render_template('admin_signup.html', form=form)
 
+# Admin login page
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
     form = AdminLoginForm()
@@ -161,6 +174,7 @@ def admin_login():
             flash("Invalid username or password. Try again.", "error")
     return render_template('admin_login.html', form=form)
 
+# Admin dashboard – overview of system data
 @app.route('/admin/dashboard')
 def admin_dashboard():
     if 'admin_id' not in session:
@@ -185,12 +199,14 @@ def admin_dashboard():
                          biodiversity_records=total_biodiversity,
                          biodiversity_countries=total_biodiversity_countries)
 
+# Admin logout route
 @app.route('/admin/logout')
 def admin_logout():
     session.pop('admin_id', None)
     flash("Logged out successfully!", "success")
     return redirect(url_for('admin_login'))
 
+# Admin edit about route – edit the About page content (objective and background)
 @app.route('/admin/edit-about', methods=['GET', 'POST'])
 def admin_edit_about():
     if 'admin_id' not in session:
@@ -214,6 +230,7 @@ def admin_edit_about():
     
     return render_template('admin_edit_about.html', form=form)
 
+# Admin delete contact route – delete a contact message submitted by a user
 @app.route('/admin/delete-contact/<int:contact_id>')
 def admin_delete_contact(contact_id):
     if 'admin_id' not in session:
@@ -229,6 +246,7 @@ def admin_delete_contact(contact_id):
 
 # ========== ADMIN DEFORESTATION DATA MANAGEMENT ==========
 
+# Admin deforestation route – view all deforestation records and metadata
 @app.route('/admin/deforestation')
 def admin_deforestation():
     if 'admin_id' not in session:
@@ -242,6 +260,7 @@ def admin_deforestation():
                          data_records=data_records,
                          metadata_records=metadata_records)
 
+# Admin deforestation add route – add new deforestation data
 @app.route('/admin/deforestation/add', methods=['GET', 'POST'])
 def admin_add_deforestation():
     if 'admin_id' not in session:
@@ -276,6 +295,7 @@ def admin_add_deforestation():
     
     return render_template('admin_deforestation_form.html', form=form, action='Add')
 
+# Admin deforestaion edit route – edit existing deforestation data
 @app.route('/admin/deforestation/edit/<int:id>', methods=['GET', 'POST'])
 def admin_edit_deforestation(id):
     if 'admin_id' not in session:
@@ -299,6 +319,7 @@ def admin_edit_deforestation(id):
     
     return render_template('admin_deforestation_form.html', form=form, action='Edit')
 
+# Admin deforestation delete route – delete a deforestation record
 @app.route('/admin/deforestation/delete/<int:id>')
 def admin_delete_deforestation(id):
     if 'admin_id' not in session:
@@ -312,7 +333,7 @@ def admin_delete_deforestation(id):
     flash("Deforestation data deleted successfully!", "success")
     return redirect(url_for('admin_deforestation'))
 
-# Country Metadata Management
+# Admin metadata route – add metadata for a country
 @app.route('/admin/metadata/add', methods=['GET', 'POST'])
 def admin_add_metadata():
     if 'admin_id' not in session:
@@ -343,6 +364,7 @@ def admin_add_metadata():
     
     return render_template('admin_metadata_form.html', form=form, action='Add')
 
+# Admin metadata edit route – edit country metadata
 @app.route('/admin/metadata/edit/<int:id>', methods=['GET', 'POST'])
 def admin_edit_metadata(id):
     if 'admin_id' not in session:
@@ -365,6 +387,7 @@ def admin_edit_metadata(id):
     
     return render_template('admin_metadata_form.html', form=form, action='Edit')
 
+# Admin metadata delete route – delete country metadata
 @app.route('/admin/metadata/delete/<int:id>')
 def admin_delete_metadata(id):
     if 'admin_id' not in session:
@@ -380,6 +403,7 @@ def admin_delete_metadata(id):
 
 # ========== ADMIN BIODIVERSITY DATA MANAGEMENT ==========
 
+# Admin biodiversity route – view all biodiversity records
 @app.route('/admin/biodiversity')
 def admin_biodiversity():
     if 'admin_id' not in session:
@@ -396,6 +420,7 @@ def admin_biodiversity():
                          biodiversity_records=biodiversity_records,
                          countries=countries)
 
+# Admin biodiversity add route – add new biodiversity data
 @app.route('/admin/biodiversity/add', methods=['GET', 'POST'])
 def admin_add_biodiversity():
     if 'admin_id' not in session:
@@ -405,13 +430,13 @@ def admin_add_biodiversity():
     form = BiodiversityStatusForm()
     
     if form.validate_on_submit():
-        # Check if country exists, if not create it
+
         country = Country.query.filter_by(name=form.country_name.data).first()
         
         if not country:
             country = Country(name=form.country_name.data)
             db.session.add(country)
-            db.session.flush()  # Get the country ID
+            db.session.flush()  
         
         existing = BiodiversityStatus.query.filter_by(
             country_id=country.id,
@@ -438,6 +463,7 @@ def admin_add_biodiversity():
     
     return render_template('admin_biodiversity_form.html', form=form, action='Add')
 
+# Admin biodiversity edit route – edit biodiversity data
 @app.route('/admin/biodiversity/edit/<int:id>', methods=['GET', 'POST'])
 def admin_edit_biodiversity(id):
     if 'admin_id' not in session:
@@ -448,7 +474,7 @@ def admin_edit_biodiversity(id):
     form = BiodiversityStatusForm(obj=data)
     
     if form.validate_on_submit():
-        # Check if country exists, if not create it
+
         country = Country.query.filter_by(name=form.country_name.data).first()
         
         if not country:
@@ -469,6 +495,7 @@ def admin_edit_biodiversity(id):
     
     return render_template('admin_biodiversity_form.html', form=form, action='Edit')
 
+# Admin biodiversity delete route – delete a biodiversity record
 @app.route('/admin/biodiversity/delete/<int:id>')
 def admin_delete_biodiversity(id):
     if 'admin_id' not in session:
@@ -484,6 +511,8 @@ def admin_delete_biodiversity(id):
 
 # ========== ADMIN COUNTRY MANAGEMENT ==========
 
+
+# Admin countries route – view all countries
 @app.route('/admin/countries')
 def admin_countries():
     if 'admin_id' not in session:
@@ -493,6 +522,8 @@ def admin_countries():
     countries = Country.query.order_by(Country.name).all()
     return render_template('admin_countries.html', countries=countries)
 
+
+# Admin country add route – add a new country
 @app.route('/admin/countries/add', methods=['GET', 'POST'])
 def admin_add_country():
     if 'admin_id' not in session:
@@ -517,6 +548,7 @@ def admin_add_country():
     
     return render_template('admin_country_form.html', form=form, action='Add')
 
+# Admin country edit route – edit an existing country
 @app.route('/admin/countries/edit/<int:id>', methods=['GET', 'POST'])
 def admin_edit_country(id):
     if 'admin_id' not in session:
@@ -541,6 +573,7 @@ def admin_edit_country(id):
     
     return render_template('admin_country_form.html', form=form, action='Edit')
 
+# Admin country delete route – delete a country (only if no biodiversity records exist)
 @app.route('/admin/countries/delete/<int:id>')
 def admin_delete_country(id):
     if 'admin_id' not in session:
@@ -548,8 +581,7 @@ def admin_delete_country(id):
         return redirect(url_for('admin_login'))
     
     country = Country.query.get_or_404(id)
-    
-    # Check if country has biodiversity records
+
     biodiversity_count = BiodiversityStatus.query.filter_by(country_id=id).count()
     
     if biodiversity_count > 0:
@@ -562,6 +594,7 @@ def admin_delete_country(id):
     flash(f"Country '{country.name}' deleted successfully!", "success")
     return redirect(url_for('admin_countries'))
 
+# Test route – used to verify database data
 @app.route('/test-data')
 def test_data():
     countries = db.session.query(DeforestationData.country).distinct().all()
